@@ -6,15 +6,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
 import javax.persistence.*
 
-@Entity(name = "members")
-@Table(name = "members")
+@Entity(name = "teams")
+@Table(name = "teams")
 @EntityListeners(AuditingEntityListener::class)
-class Member {
+class Team {
 
-    constructor(name: String, email: String, team: Team) {
+    constructor(name: String) {
         this.name = name
-        this.email = email
-        this.team = team
     }
 
     @Id
@@ -24,12 +22,8 @@ class Member {
     @Column
     var name: String? = ""
 
-    @Column
-    var email: String? = ""
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id")
-    var team: Team? = null
+    @OneToMany(mappedBy = "team")
+    var members: List<Member> = emptyList()
 
     @CreatedDate
     @Column
