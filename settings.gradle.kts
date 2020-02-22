@@ -1,1 +1,1 @@
-rootProject.name = "querydsl"
+rootProject.name = "kotlin-querydsl"
